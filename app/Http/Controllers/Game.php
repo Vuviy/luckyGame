@@ -10,12 +10,7 @@ class Game extends Controller
 {
     public function index(){
 
-
         $user = auth()->user();
-
-
-//        dd(auth()->user());
-
         $title = 'Game';
 
         return view('game', compact(['title', 'user']));
@@ -27,20 +22,19 @@ class Game extends Controller
 
         $link = Link::query()->where('user_id',$request->user_id)->first();
         $link->update(['status' => 0]);
-
         return redirect()->route('game', ['link' => $link->link]);
+
+//        or
+//        $link->delete();
+//        return redirect()->route('home');
     }
 
 
     public function generateNewLink(Request $request){
 
-
         $link = Link::query()->where('user_id', $request->user_id)->first();
         $new_link = Str::random(30);
-
-//        $link->link = $new_link;
         $link->update(['link' => $new_link, 'status' => 1]);
-
 
         return redirect()->route('game', ['link' => $new_link]);
     }

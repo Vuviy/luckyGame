@@ -32,4 +32,13 @@ class User extends Authenticatable
         return $this->hasMany(Game::class)->orderBy('created_at', 'DESC')->limit(3);
     }
 
+    public function allGames(): HasMany
+    {
+        return $this->hasMany(Game::class);
+    }
+
+    public function score(){
+        return $this->allGames()->sum('sum');
+    }
+
 }

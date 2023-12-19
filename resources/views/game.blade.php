@@ -5,14 +5,11 @@
 
     <div class="w-50 p-2" style="margin-left: auto; margin-right: auto; margin-top: 100px">
 
-{{--        <form>--}}
-{{--            <div class="mb-3">--}}
-{{--                <label for="exampleInputEmail1" class="form-label">Generate new link</label>--}}
-{{--                <input hidden type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">--}}
-{{--                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>--}}
-{{--            </div>--}}
-{{--            <button type="submit" class="btn btn-primary">Submit</button>--}}
-{{--        </form>--}}
+
+        <div class="d-flex justify-content-between">
+            <h2>User: {{$user->username}}</h2>
+            <h2>Score: {{$user->score()}}</h2>
+        </div>
 
         <form action="{{route('generateNewLink', ['link' => $user->link->link])}}" method="post" class="border border-primary p-1" class="row g-3">
             <div class="col-auto">

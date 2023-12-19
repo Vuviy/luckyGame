@@ -32,7 +32,7 @@ Route::post('/register', [\App\Http\Controllers\Register::class, 'register'])->n
 
 
 Route::controller(\App\Http\Controllers\Game::class)->group(function () {
-    Route::get('/game/{link}', 'index')->middleware('link')->name('game');
+    Route::get('/game/{link?}', 'index')->middleware('link')->name('game');
     Route::post('/game/{link}/deactivate', 'deactivate')->middleware('link')->name('deactivate');
     Route::post('/game/{link}/generate', 'generateNewLink')->middleware('link')->name('generateNewLink');
     Route::post('/game/{link}/imfeelinglucky', 'imfeelinglucky')->middleware('link')->name('imfeelinglucky');
