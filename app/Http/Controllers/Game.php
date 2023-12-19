@@ -48,9 +48,13 @@ class Game extends Controller
 
     public function imfeelinglucky(){
 
+        $user = auth()->user();
+        $title = 'Game';
 
-        if(auth()->user()){
-
+        if($user){
+            if($user->link->status == 0){
+                return view('game', compact(['title', 'user']));
+            }
             $int = random_int(1, 1000);
             $win_lose = $int % 2;
             $prise = 0;
@@ -68,9 +72,8 @@ class Game extends Controller
                     'sum' => $prise,
                 ]
             );
-            $title = 'Game';
+
             $data = ['result' => $int, 'win_lose' => $win_lose, 'prise' => $prise];
-            $user = auth()->user();
             return view('game', compact(['title', 'data', 'user']));
         }
 

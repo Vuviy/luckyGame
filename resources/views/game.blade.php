@@ -22,7 +22,7 @@
                         <h4 class="border border-danger">Link not active</h4>
                     </div>
                 @endif
-                <h5>Your link: <h4>{{'site.com/game/'. $user->link->link}}</h4> </h5>
+                <p>Your link: <p>{{str_replace(['/history', '/imfeelinglucky'], '', url()->current())}}</p> </p>
             </div>
             <div class="col-auto">
                 <label for="inputPassword2" class="visually-hidden"></label>
@@ -35,14 +35,6 @@
         </form>
 
         <form action="{{route('deactivate', ['link' => $user->link->link])}}" method="post" class="row g-3 border border-primary p-1 mt-3">
-            <div class="col-auto">
-                @if($user->link->status == 0)
-                    <div>
-                        <h4 class="border border-danger">Link not active</h4>
-                    </div>
-                @endif
-                <h5>Your link: <h4>{{'site.com/game/'. $user->link->link}}</h4> </h5>
-            </div>
             <div class="col-auto">
                 <label for="inputPassword2" class="visually-hidden"></label>
                 <input hidden type="text" name="user_id" value="{{$user->id}}" class="form-control" id="inputPassword2" placeholder="Password">
@@ -80,7 +72,7 @@
 
         <div class="border border-primary p-1 mt-3">
             <form action="{{route('imfeelinglucky', ['link' => $user->link->link])}}" method="post">
-                <button type="submit" class="btn btn-success btn-lg imfeelinglucky">Imfeelinglucky</button>
+                <button type="submit" {{$user->link->status == 0 ? 'disabled' : ''}} class="btn btn-success btn-lg imfeelinglucky">Imfeelinglucky</button>
                 @csrf
             </form>
 
