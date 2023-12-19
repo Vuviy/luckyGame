@@ -13,6 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', [\App\Http\Controllers\Register::class, 'index'])->withoutMiddleware('link')->name('home');
+Route::post('/register', [\App\Http\Controllers\Register::class, 'register'])->name('register');
+
+
+//Route::get('/game', [\App\Http\Controllers\Game::class, 'index'])->name('game');
+
+//Route::get('/game/{link}', function (string $link) {
+//
+//    return view('game');
+//})->name('game');
+
+//Route::get('/game/{link}', [\App\Http\Controllers\Game::class, 'index'])->name('game');
+
+
+Route::controller(\App\Http\Controllers\Game::class)->group(function () {
+    Route::get('/game/{link}', 'index')->middleware('link')->name('game');
+//    Route::post('/orders', 'store');
 });
