@@ -34,10 +34,12 @@ class Register extends Controller
         $user = User::create([
             'username' => $request->username,
             'phone_number' => $request->phone_number,
-            'link' => $link,
+//            'link' => $link,
         ]);
 
-//        $user = User::create($request);
+
+
+        $user->link()->create(['link' => $link]);
 
 
 
@@ -49,7 +51,7 @@ class Register extends Controller
 
 //        return $con;
 //        $url = route('game', ['link' => $user->link]);
-        return redirect()->route('game', ['link' => $user->link]);
+        return redirect()->route('game', ['link' => $user->link->link]);
 
 
 //        dd($url);

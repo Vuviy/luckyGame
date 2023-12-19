@@ -18,7 +18,12 @@ class Link
     public function handle(Request $request, Closure $next)
     {
 
-        $userLink = auth()->user()->link;
+
+
+//        dd(auth()->user());
+
+
+        $userLink = auth()->user()->link->link;
         $link = str_replace('game/', '', $request->path());
 
         $flag = $link == $userLink;
