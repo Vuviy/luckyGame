@@ -31,12 +31,13 @@ class Link
 
         $link = str_replace('game/', '', $request->path());
         $link = str_replace('/deactivate', '', $link);
+        $link = str_replace('/generate', '', $link);
 
         $flag = $link == $userLink->link;
 
 //        dd(!$flag || !$end_time->gt(Carbon::now()));
 
-//        dd(!$flag);
+//        dd($link);
 
         if(!$flag || !$end_time->gt(Carbon::now())){
 
