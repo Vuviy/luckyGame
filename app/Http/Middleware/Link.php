@@ -32,6 +32,8 @@ class Link
         $link = str_replace('game/', '', $request->path());
         $link = str_replace('/deactivate', '', $link);
         $link = str_replace('/generate', '', $link);
+        $link = str_replace('/imfeelinglucky', '', $link);
+        $link = str_replace('/history', '', $link);
 
         $flag = $link == $userLink->link;
 

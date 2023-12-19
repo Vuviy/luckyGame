@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Link extends Model
+class Game extends Model
 {
-    protected $fillable = ['link', 'user_id', 'status'];
+    protected $fillable = ['result', 'user_id', 'sum'];
+
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
 }

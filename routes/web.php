@@ -35,5 +35,6 @@ Route::controller(\App\Http\Controllers\Game::class)->group(function () {
     Route::get('/game/{link}', 'index')->middleware('link')->name('game');
     Route::post('/game/{link}/deactivate', 'deactivate')->middleware('link')->name('deactivate');
     Route::post('/game/{link}/generate', 'generateNewLink')->middleware('link')->name('generateNewLink');
-//    Route::post('/orders', 'store');
+    Route::post('/game/{link}/imfeelinglucky', 'imfeelinglucky')->middleware('link')->name('imfeelinglucky');
+    Route::post('/game/{link}/history', 'history')->middleware('link')->name('history');
 });

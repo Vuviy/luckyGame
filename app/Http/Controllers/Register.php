@@ -12,50 +12,22 @@ class Register extends Controller
 {
     public function index(){
 
-
-
-
-//        dd($link);
-
         $title = 'Register';
         return view('register', compact('title'));
     }
 
     public function register(UserRequest $request){
 
-
-
-//        dd($request->phone_number);
-
         $link = Str::random(30);
-
-//        $user = User::create($request);
 
         $user = User::create([
             'username' => $request->username,
             'phone_number' => $request->phone_number,
-//            'link' => $link,
         ]);
 
-
-
         $user->link()->create(['link' => $link]);
-
-
-
         Auth::loginUsingId($user->id);
-
-//        $con =  new Game();
-//
-//        $con->index($link);
-
-//        return $con;
-//        $url = route('game', ['link' => $user->link]);
         return redirect()->route('game', ['link' => $user->link->link]);
 
-
-//        dd($url);
-
-//        dd($user);
     }
 }
