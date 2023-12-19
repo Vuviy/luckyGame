@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class Link
 {
@@ -20,14 +21,24 @@ class Link
 
 
 
-//        dd(auth()->user());
 
+        $userLink = auth()->user()->link;
 
-        $userLink = auth()->user()->link->link;
+//        $end_time = $userLink->updated_at->addMinutes(10);
+        $end_time = $userLink->updated_at->addWeeks(1);
+
+//        dd($end_time);
+
         $link = str_replace('game/', '', $request->path());
+        $link = str_replace('/deactivate', '', $link);
 
-        $flag = $link == $userLink;
-       if(!$flag){
+        $flag = $link == $userLink->link;
+
+//        dd(!$flag || !$end_time->gt(Carbon::now()));
+
+//        dd(!$flag);
+
+        if(!$flag || !$end_time->gt(Carbon::now())){
 
            return redirect()->route('home');
        }
