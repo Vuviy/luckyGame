@@ -18,35 +18,29 @@ class Link
      */
     public function handle(Request $request, Closure $next)
     {
-
-
-
-
-        $userLink = auth()->user()->link;
-
-//        $end_time = $userLink->updated_at->addMinutes(10);
-        $end_time = $userLink->updated_at->addWeeks(1);
-
-//        dd($end_time);
-
         $link = str_replace(['game/', '/deactivate', '/generate', '/imfeelinglucky', '/history'], '', $request->path());
-//        $link = str_replace('/deactivate', '', $link);
-//        $link = str_replace('/generate', '', $link);
-//        $link = str_replace('/imfeelinglucky', '', $link);
-//        $link = str_replace('/history', '', $link);
 
-        $flag = $link == $userLink->link;
+        $user_link = \App\Models\Link::query()->where('link', $link)->first();
 
-//        dd(!$flag || !$end_time->gt(Carbon::now()));
+        if($user_link){
+            $user = $user_link->user;
+            $user_signed = $user == auth()->user();
 
-//        dd($link);
+            if(!$user_signed && $user_link){
+                return redirect()->route('loginForm');
+            }
+        }
 
-        if(!$flag || !$end_time->gt(Carbon::now())){
-
-           return redirect()->route('home');
-       }
-
-        return $next($request);
+        if(auth()->user()) {
+            $userLink = auth()->user()->link;
+            $end_time = $userLink->updated_at->addWeeks(1);
+            $flag = $link == $userLink->link;
+            if (!$flag || !$end_time->gt(Carbon::now())) {
+                return redirect()->route('home');
+            }
+            return $next($request);
+        }
+        return redirect()->route('home');
 
     }
 }

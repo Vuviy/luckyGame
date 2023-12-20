@@ -16,6 +16,12 @@ class Register extends Controller
         return view('register', compact('title'));
     }
 
+    public function loginForm(){
+
+        $title = 'Login';
+        return view('login', compact('title'));
+    }
+
     public function register(UserRequest $request){
 
         $link = Str::random(30);
@@ -28,6 +34,17 @@ class Register extends Controller
         $user->link()->create(['link' => $link]);
         Auth::loginUsingId($user->id);
         return redirect()->route('game', ['link' => $user->link->link]);
+    }
+
+    public function login(UserRequest $request){
+
+        $user = User::query()->where('username', $request->username)->where('phone_number', $request->phone_number)->first();
+
+        if($user){
+            Auth::loginUsingId($user->id);
+            return redirect()->route('game', ['link' => $user->link->link]);
+        }
+        return redirect()->route('loginForm');
 
     }
 }

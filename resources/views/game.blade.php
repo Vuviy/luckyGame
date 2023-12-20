@@ -34,10 +34,10 @@
         <form action="{{route('deactivate', ['link' => $user->link->link])}}" method="post" class="row g-3 border border-primary p-1 mt-3">
             <div class="col-auto">
                 <label for="inputPassword2" class="visually-hidden"></label>
-                <input hidden type="text" name="user_id" value="{{$user->id}}" class="form-control" id="inputPassword2" placeholder="Password">
+                <input hidden type="text" name="user_id" value="{{$user->id}}" class="form-control" id="inputPassword2">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-danger mb-3">Deactivate link</button>
+                <button {{$user->link->status ? '' : 'disabled'}} type="submit" class="btn btn-danger mb-3">Deactivate link</button>
             </div>
             @csrf
         </form>

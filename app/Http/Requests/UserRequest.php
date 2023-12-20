@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'username' => 'required|string',
-            'phone_number' => 'required|numeric',
+            'phone_number' => 'required|numeric|digits_between:6,12',
         ];
     }
 }

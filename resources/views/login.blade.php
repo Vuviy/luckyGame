@@ -6,6 +6,7 @@
     <div class="w-50 p-5" style="margin-left: auto; margin-right: auto">
         <!-- /resources/views/post/create.blade.php -->
 
+        <h2>Login</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -19,7 +20,7 @@
 
     <!-- Create Post Form -->
 
-        <form action="{{route('register')}}" method="post">
+        <form action="{{route('login')}}" method="post">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Username</label>
                 <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -28,7 +29,7 @@
                 <label for="exampleInputPassword1" class="form-label">Phonenumber</label>
                 <input type="number" name="phone_number" placeholder="3809999999" class="form-control" id="exampleInputPassword1">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Login</button>
             @csrf
         </form>
     </div>
