@@ -4,8 +4,6 @@
 
 
     <div class="w-50 p-5" style="margin-left: auto; margin-right: auto">
-        <!-- /resources/views/post/create.blade.php -->
-
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -16,8 +14,6 @@
                 </ul>
             </div>
     @endif
-
-    <!-- Create Post Form -->
 
         <form action="{{route('register')}}" method="post">
             <div class="mb-3">

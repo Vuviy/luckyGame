@@ -23,10 +23,6 @@ class Game extends Controller
         $link = Link::query()->where('user_id',$request->user_id)->first();
         $link->update(['status' => 0]);
         return redirect()->route('game', ['link' => $link->link]);
-
-//        or
-//        $link->delete();
-//        return redirect()->route('home');
     }
 
 

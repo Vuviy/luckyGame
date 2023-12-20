@@ -23,15 +23,6 @@ Route::get('/login', [\App\Http\Controllers\Register::class, 'loginForm'])->name
 Route::post('/login', [\App\Http\Controllers\Register::class, 'login'])->name('login');
 
 
-//Route::get('/game', [\App\Http\Controllers\Game::class, 'index'])->name('game');
-
-//Route::get('/game/{link}', function (string $link) {
-//
-//    return view('game');
-//})->name('game');
-
-//Route::get('/game/{link}', [\App\Http\Controllers\Game::class, 'index'])->name('game');
-
 
 Route::controller(\App\Http\Controllers\Game::class)->group(function () {
     Route::get('/game/{link?}', 'index')->middleware('link')->name('game');
