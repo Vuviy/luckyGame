@@ -24,11 +24,12 @@ class Register extends Controller
 
     public function register(UserRequest $request){
 
+        $data = $request->validated();
         $link = Str::random(30);
 
         $user = User::create([
-            'username' => $request->username,
-            'phone_number' => $request->phone_number,
+            'username' => $data['username'],
+            'phone_number' => $data['phone_number'],
         ]);
 
         $user->link()->create(['link' => $link]);
@@ -38,7 +39,9 @@ class Register extends Controller
 
     public function login(UserRequest $request){
 
-        $user = User::query()->where('username', $request->username)->where('phone_number', $request->phone_number)->first();
+        $data = $request->validated();
+
+        $user = User::query()->where('username', $data['username'])->where('phone_number', $data['phone_number'])->first();
 
         if($user){
             Auth::loginUsingId($user->id);

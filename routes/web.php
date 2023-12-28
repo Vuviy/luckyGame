@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+
 Route::get('/', [\App\Http\Controllers\Register::class, 'index'])->withoutMiddleware('link')->name('home');
 Route::post('/register', [\App\Http\Controllers\Register::class, 'register'])->name('register');
 Route::get('/login', [\App\Http\Controllers\Register::class, 'loginForm'])->name('loginForm');
